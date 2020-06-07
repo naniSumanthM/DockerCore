@@ -1,0 +1,46 @@
+docker create <creates an image, filesystem snapshot>
+docker start -a <runs the process associated with the image, -a prints output to the terminal>
+docker run <image-name>
+docker run <image-name> <command>
+docker run -d <image-name> - run in background
+docker run -p <local-port>:<container-port> <image id>
+docker run -p -v <dependencies> <local-port>:<container-port> -v $(pwd):/<container-path> <image> -- Docker Volumes
+docker ps - <lists all running containers≥
+docker ps --all <list all created containers>
+docker system prune <stop, and delete containers, and clears cache>
+docker logs <container id>
+docker stop <container id> (stops on its own time)
+docker kill <container id> (force stop)
+docker exec -it <container id> <command> (Execute additional commands inside the container)
+docker exec -it <container id> sh - opens shell prompt inside the container
+docker build -t <docker id>/<project-name>:<latest> . (Tagging an image)
+docker build -f <file-name> .
+
+
+--Create A Docker File 
+1) Define a base image FROM
+2) Commands to install additional programs RUN
+3) Command to run something on initialization CMD
+--Create an image
+docker build .
+docker run <image-id>
+
+--Docker Compose
+Automates Docker containers, and helps start up several containers
+Reduces commands
+
+docker-compose up == docker run <image>
+docker-compose up --build == docker build .
+
+docker-compose up -d == run containers in background
+docker-compose down == stop containers
+docker-compose ps == show all running containers
+
+CURL - HTTP GET
+curljson -1 http://dummy.restapiexample.com/api/v1/employees
+
+CURL - HTTP POST
+curl --header "Content-Type: application/json" --request POST --data '{"name":"sumanth","salary":"00","age":"0"}' http://dummy.restapiexample.com/api/v1/create
+
+CURL - HTTP GET TIME
+curl 'http://dummy.restapiexample.com/api/v1/employees' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: en-US,en;q=0.8,ja;q=0.6' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.86 Safari/537.36' -H 'Connection: keep-alive' --compressed -s -o /dev/null -w  "%{time_starttransfer}\n"
